@@ -1,0 +1,78 @@
+body {
+	background: url('../images/background1.gif') no-repeat center center fixed;
+	background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;	
+}
+
+
+.character-image {
+  display: inline-block;
+  height: 200px;
+  padding: 0px 20px 0px 20px;
+  margin: 0px 2px 0px 2px;
+  background-color: white;
+  border: solid;
+  border-color: green;
+}
+
+.character-image p {
+  text-align: center;
+  margin: 0px 2px 0px 2px;
+}
+
+#chosen-character {
+  height: 190px;
+}
+
+#chosen-character h2 {
+  font-size: 2em;
+    color: #485bf0;
+}
+
+.chosen-character {
+  border-color: #dd48f0;
+  background-color: #5bf048;
+}
+
+#enemies-available h2 {
+  font-size: 2em;
+    color: #8948f0;
+}
+
+.enemy-character {
+  border-color: #48f0dd;
+  background-color: #f0485b;
+  margin: 0px 2px 0px 2px;
+}
+
+#fight-section h2 {
+  font-size: 2em;
+    color: #f0485b;
+}
+
+#defender-section {
+  height: 210px;
+}
+
+#defender-section h2 {
+  font-size: 2em;
+    color: #f0485b;
+}
+
+.defender-character {
+  border-color: #485bf0;
+  background-color: #f0dd48;
+}
+
+
+footer {
+    background-color: #d18b29;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 11px;
+    clear: both;
+}
