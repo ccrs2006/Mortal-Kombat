@@ -1,25 +1,14 @@
 
-// ----- Global Variables ----- //
+//GLOBAL VARIABLES
 
-// Has the user selected their character
 var characterSelected = false;
-
-// Has the user selected the defender
 var defenderSelected = false;
-
-// Variable to store the user's chosen character
 var character = {};
-
-// Variable to store the chosen enemy
 var defender = {};
-
-// Number of enemies defeated
 var enemiesDefeated = 0;
-
-// Boolean to indicate whether or not the game is over
 gameOver = false;
 
-// ----- Character Objects ----- //
+//CHARACTERS
 
 var subZero = {
   name: "subZero",
@@ -49,9 +38,8 @@ var liuKang = {
   attack: 25
 };
 
-// ----- Helper Functions ----- //
+//FUNCTIONS
 
-// This function will initialize the character value from the global object variables defined above
 function initializeCharacter(chosenCharacter) {
   character.name = chosenCharacter.name;
   character.health = chosenCharacter.health;
@@ -59,7 +47,6 @@ function initializeCharacter(chosenCharacter) {
   character.attack = chosenCharacter.attack;
 }
 
-// This function will initialize the enemy's value from the global object variables defined above
 function initializeDefender(chosenDefender) {
   defender.name = chosenDefender.name;
   defender.health = chosenDefender.health;
@@ -67,15 +54,12 @@ function initializeDefender(chosenDefender) {
   defender.attack = chosenDefender.attack;
 }
 
-// This function will move the remaining characters to the enemies section
 function moveToEnemies() {
   $(".available-character").removeClass("available-character").addClass("enemy-character");
   $("#enemies-available").append($(".enemy-character"));
 }
 
-// This function will reset the state of the game
 function resetGame() {
-  // Reset all the health values to the original
   $("#subZero").children(".health").html(subZero.health);
   $("#raiden").children(".health").html(raiden.health);
   $("#sonyaBlade").children(".health").html(sonyaBlade.health);
@@ -88,6 +72,7 @@ function resetGame() {
   $("#characters-available").html(available);
   $("#game-message").empty();
   $("#restart").hide();
+  $(".health").hide();
 
   characterSelected = false;
   defenderSelected = false;
@@ -97,151 +82,143 @@ function resetGame() {
   defender = {};
 }
 
-// ----- Main Routine ----- //
+// ROUTINE
 
-// Run Javascript when the HTML has finished loading
 $(document).ready(function() {
 
-  // Hide the "Restart" button on document load
+  //begin audio for the game
+  var audioElement = document.createElement('audio');
+   audioElement.autoplay = true;
+   audioElement.loop = true;
+   audioElement.volume = 0.1;
+    audioElement.setAttribute('src', 'assets/sounds/introSong.mp3');
+
+  // Hide the "Restart" button and character health on document load
   $("#restart").hide();
+  $(".health").hide();
 
   // Determine which character the user has clicked
-  $("#subZero").on("click", function () {
-    console.log("subZero");
+  $("#subZero-character").on("click", function () {
 
-    // User is choosing the character
+    // if character was not selected ignore
     if(characterSelected == false) {
-      $("#game-message").empty();
-
-      // Set the user's cha
-      racter
+   
+      // Set the user's character
       initializeCharacter(subZero);
       characterSelected = true;
 
       // Display the chosen character
-      $("#subZero").removeClass("available-character").addClass("chosen-character");
+      $("#subZero-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
+      $("#subZero-character").children(".health").html(subZero.health).show();
 
       // Move the remaining characters to the enemies section
       moveToEnemies();
     } else if ((characterSelected == true) && (defenderSelected == false)) {
       // User is choosing the defender
-      if($("#subZero").hasClass("enemy-character")) {
-        $("#game-message").empty();
+      if($("#subZero-character").hasClass("enemy-character")) {
 
         // Set the user's enemy
         initializeDefender(subZero);
         defenderSelected = true;
 
         // Add the character to the defender section
-        $("#subZero").removeClass("enemy-character").addClass("defender-character");
+        $("#subZero-character").removeClass("enemy-character").addClass("defender-character");
         $("#defender-section").append(this);
+        $("#subZero-character").children(".health").html(subZero.health).show();
       }
     }
+    var $audioCharacter = document.createElement('audio');
+                    $audioCharacter.setAttribute('src', 'assets/sounds/impressive.mp3');
+                    $audioCharacter.play();
   });
 
   $("#raiden-character").on("click", function () {
-    console.log("raiden is selected");
+    console.log("raiden was selected");
 
-    // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
 
-      // Set the user's character
       initializeCharacter(raiden);
       characterSelected = true;
 
-      // Display the chosen character
       $("#raiden-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
+      $("#raiden-character").children(".health").html(raiden.health).show();
 
-      // Move the remaining characters to the enemies section
       moveToEnemies();
     } else if ((characterSelected == true) && (defenderSelected == false)) {
-      // User is choosing the defender
       if($("#raiden-character").hasClass("enemy-character")) {
-        $("#game-message").empty();
 
-        // Set the user's enemy
         initializeDefender(raiden);
         defenderSelected = true;
 
-        // Add the character to the defender section 
         $("#raiden-character").removeClass("enemy-character").addClass("defender-character");
         $("#defender-section").append(this);
+        $("#raiden-character").children(".health").html(raiden.health).show();
       }
     }
+      var $audioCharacter = document.createElement('audio');
+            $audioCharacter.setAttribute('src', 'assets/sounds/laugh.mp3');
+            $audioCharacter.play();
   });
 
   $("#sonyaBlade-character").on("click", function () {
-    console.log("Darth Sidious is selected");
 
-    // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
 
-      // Set the user's character
       initializeCharacter(sonyaBlade);
       characterSelected = true;
 
-      // Display the chosen character
       $("#sonyaBlade-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
+      $("#sonyaBlade-character").children(".health").html(sonyaBlade.health).show();
 
-      // Move the remaining characters to the enemies section
       moveToEnemies();
     } else if ((characterSelected == true) && (defenderSelected == false)) {
-      // User is choosing the defender
       if($("#sonyaBlade-character").hasClass("enemy-character")) {
-        $("#game-message").empty();
 
-        // Set the user's enemy
         initializeDefender(sonyaBlade);
         defenderSelected = true;
 
-        // Add the character to the defender section 
         $("#sonyaBlade-character").removeClass("enemy-character").addClass("defender-character");
         $("#defender-section").append(this);
+        $("#sonyaBlade-character").children(".health").html(sonyaBlade.health).show();    
       }
     }
+      var $audioCharacter = document.createElement('audio');
+            $audioCharacter.setAttribute('src', 'assets/sounds/excellent.mp3');
+            $audioCharacter.play();
   });
 
   $("#liuKang-character").on("click", function () {
-    console.log("Darth Maul is selected");
 
-    // User is choosing the character
     if(characterSelected == false) {
-      $("#game-message").empty();
 
-      // Set the user's character
       initializeCharacter(liuKang);
       characterSelected = true;
 
-      // Display the chosen character
       $("#liuKang-character").removeClass("available-character").addClass("chosen-character");
       $("#chosen-character").append(this);
+      $("#liuKang-character").children(".health").html(liuKang.health).show();
 
-      // Move the remaining characters to the enemies section
       moveToEnemies();
     } else if ((characterSelected == true) && (defenderSelected == false)) {
-      // User is choosing the defender
       if($("#liuKang-character").hasClass("enemy-character")) {
-        $("#game-message").empty();
 
-        // Set the user's enemy
         initializeDefender(liuKang);
         defenderSelected = true;
-
-        // Add the character to the defender section 
+ 
         $("#liuKang-character").removeClass("enemy-character").addClass("defender-character");
         $("#defender-section").append(this);
+        $("#liuKang-character").children(".health").html(liuKang.health).show();
       }
     }
+      var $audioCharacter = document.createElement('audio');
+          $audioCharacter.setAttribute('src', 'assets/sounds/finishHim.mp3');
+          $audioCharacter.play();
   });
 
   $("#attack").on("click", function() {
-    console.log("Attack selected");
-
     console.log("character = " + JSON.stringify(character));
     console.log("defender = " + JSON.stringify(defender));
 
@@ -255,30 +232,30 @@ $(document).ready(function() {
       // User's attack power increases
       character.attack = character.attack + character.baseAttack;
 
-      // If defender is still alive, they counter attack the user
+      // if defender is still alive, they counter attack the user
       if (defender.health > 0) {
         character.health = character.health - defender.baseAttack;
         $(".chosen-character").children(".health").html(character.health);
 
-        // Check if the user survives the attack
+        // check if the user survives the attack
         if (character.health > 0) {
           $("#game-message").append("<p>" + defender.name + " attacked you back for " + defender.baseAttack + " damage.</p>");
         } else {
           gameOver = true;
-          $("#game-message").html("<p>You were defeated... womp womp...</p><p>Play again?</p>");
+          $("#game-message").html("<p>GAME OVER (You Got served!!!)</p><p>Play again?</p>");
           $("#restart").show();
         }
       } else {
-        // Defender is defeated
+        // is the defender is defeated
         enemiesDefeated++;
         defenderSelected = false;
         $("#game-message").html("<p>You have defeated " + defender.name + ". Choose another enemy.</p>");
         $(".defender-character").hide();
 
-        // Check if the user has won the game
+        // check if the user has won the game
         if (enemiesDefeated === 3) {
           gameOver = true;
-          $("#game-message").html("<p>You have won the game!!!</p><p>Play again?</p>");
+          $("#game-message").html("<p>You've WON!!!</p><p>Play again?</p>");
           $("#restart").show();
         }
       }
@@ -288,14 +265,13 @@ $(document).ready(function() {
       $("#game-message").html("<p>You must choose an enemy to fight.</p>");
     }
 
-    console.log("character = " + JSON.stringify(character));
-    console.log("defender = " + JSON.stringify(defender));
+    var $audioCharacter = document.createElement('audio');
+        $audioCharacter.setAttribute('src', 'assets/sounds/fight.mp3');
+        $audioCharacter.play();
   });
 
   $("#restart").on("click", function() {
-    console.log("Restart selected");
-
     resetGame();
   });
 
-}); // Main routine
+}); 

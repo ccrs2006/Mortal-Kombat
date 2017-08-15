@@ -1,78 +1,96 @@
 body {
-	background: url('../images/background1.gif') no-repeat center center fixed;
+	background: url("../images/background1.gif") no-repeat center center fixed;
 	background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;	
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;	
 }
 
+h1 {
+  color: #fc890f;
+  font-family: 'Indie Flower', cursive;
+}
+
+h2 {
+  color: #c2e544;
+}
 
 .character-image {
   display: inline-block;
-  height: 200px;
+  height: 220px;
   padding: 0px 20px 0px 20px;
   margin: 0px 2px 0px 2px;
-  background-color: white;
+  background-color: #1e9b1b;
   border: solid;
+  border-radius: 8px;
   border-color: green;
 }
 
 .character-image p {
+  font-size: 20px;
   text-align: center;
-  margin: 0px 2px 0px 2px;
+  margin: 4px 2px;
+  color: white;
+  font-family: 'Sedgwick Ave Display', cursive;
+}
+#attack {
+  margin-left: 80px;
 }
 
-#chosen-character {
-  height: 190px;
+#game-message {
+  font-size: 20px;
+  color: white;
+  font-family: 'Sedgwick Ave Display', cursive;
 }
 
-#chosen-character h2 {
-  font-size: 2em;
-    color: #485bf0;
+#restart {
+  margin-left: 80px;
 }
-
-.chosen-character {
-  border-color: #dd48f0;
-  background-color: #5bf048;
-}
-
-#enemies-available h2 {
-  font-size: 2em;
-    color: #8948f0;
-}
-
-.enemy-character {
-  border-color: #48f0dd;
-  background-color: #f0485b;
-  margin: 0px 2px 0px 2px;
-}
-
-#fight-section h2 {
-  font-size: 2em;
-    color: #f0485b;
-}
-
-#defender-section {
-  height: 210px;
-}
-
-#defender-section h2 {
-  font-size: 2em;
-    color: #f0485b;
-}
-
-.defender-character {
-  border-color: #485bf0;
-  background-color: #f0dd48;
-}
-
 
 footer {
     background-color: #d18b29;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 11px;
     clear: both;
+}
+
+@media (min-width: 980px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (max-width: 768px) {
+    .liActive,
+    .liDisabled {
+        width: 22px;
+        height: 22px;
+        line-height: 20px;
+        margin: 4px;
+    }
+    .panel {
+        margin: 15px;
+    }
+    .panel .panel-body {
+        padding: 12px 0px 0px 12px;
+        background-color: #222;
+    }
+    #hangman-img-holder {
+        margin-top: 10px;
+    }
+    #rules {
+        text-align: left;
+        margin-left: 15px;
+        margin-bottom: 10px;
+    }
+    .margin-top-20 {
+        margin-top: 10px;
+    }
 }
