@@ -11,5 +11,4 @@
 ```
 
   
-    
-    ![mortalkombat](https://user-images.githubusercontent.com/28827821/31684131-08b1bc60-b33c-11e7-88b8-81a3837861d3.JPG)
+![mortalkombat](https://user-images.githubusercontent.com/28827821/31684131-08b1bc60-b33c-11e7-88b8-81a3837861d3.JPG)
